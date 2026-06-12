@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme */
+  --bg-primary: #FAFAF9;
+  --bg-secondary: #F5F5F4;
+  --bg-tertiary: #EEEBE8;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --border-color: #E7E5E4;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --accent-pink: #EC4899;
+  --accent-pink-light: #F472B6;
+  --card-hover: #EEEBE8;
+}
+
+[class="dark"] {
+  /* Dark theme */
+  --bg-primary: #0F0F0F;
+  --bg-secondary: #1A1A1A;
+  --bg-tertiary: #252525;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A3A3A3;
+  --text-tertiary: #737373;
+  --border-color: #333333;
+  --glass-bg: rgba(26, 26, 26, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --accent-pink: #EC4899;
+  --accent-pink-light: #F472B6;
+  --card-hover: #252525;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-md rounded-xl transition-all duration-300;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-card {
+    @apply glass-effect p-6 transition-all duration-300;
+    background-color: var(--glass-bg);
+  }
+
+  .glass-card:hover {
+    background-color: var(--card-hover);
+    border-color: var(--accent-pink);
+  }
+
+  .neon-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r;
+    background-image: linear-gradient(to right, var(--accent-pink), var(--accent-pink-light));
+  }
+
+  .glow-effect {
+    @apply shadow-glow hover:shadow-glow-lg transition-shadow duration-300;
+  }
+
+  .glow-effect-blue {
+    @apply shadow-glow hover:shadow-glow-lg transition-shadow duration-300;
+  }
+
+  .button-glow {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .button-primary {
+    @apply button-glow text-white shadow-glow hover:shadow-glow-lg;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-pink-light));
+  }
+
+  .button-secondary {
+    @apply button-glow shadow-glow transition-all duration-300;
+    border: 2px solid var(--accent-pink);
+    color: var(--accent-pink);
+  }
+
+  .button-secondary:hover {
+    @apply shadow-glow-lg;
+    background-color: var(--accent-pink);
+    color: white;
+  }
+
+  .about-grid {
+    opacity: 0.15;
+  }
+
+  .dark .about-grid {
+    background-image:
+      radial-gradient(circle at top left, rgba(236,72,153,0.25), transparent 24%),
+      radial-gradient(circle at 60% 30%, rgba(236,72,153,0.2), transparent 22%),
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 100% 120px, 120px 100%, 100% 120px, 120px 100%;
+  }
+
+  .light .about-grid {
+    background-image:
+      radial-gradient(circle at top left, rgba(236,72,153,0.12), transparent 24%),
+      radial-gradient(circle at 60% 30%, rgba(236,72,153,0.1), transparent 22%),
+      linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 100% 120px, 120px 100%, 100% 120px, 120px 100%;
+  }
+
+  .neon-border-card {
+    @apply relative overflow-hidden rounded-[1.75rem] border transition-all duration-300;
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    box-shadow: 0_32px_90px_rgba(236,72,153,0.12);
+  }
+
+  .dark .neon-border-card {
+    box-shadow: 0_32px_90px_rgba(236,72,153,0.16);
+  }
+
+  .avatar-card {
+    @apply relative overflow-hidden rounded-[2rem] border transition-all duration-300;
+    background-color: var(--bg-secondary);
+    border-color: rgba(236, 72, 153, 0.3);
+    box-shadow: 0_25px_80px_rgba(236,72,153,0.12);
+  }
+
+  .dark .avatar-card {
+    box-shadow: 0_25px_80px_rgba(236,72,153,0.18);
+  }
+
+  .avatar-image {
+    @apply h-full w-full object-cover transition-transform duration-700 ease-out;
+  }
+
+  .avatar-card:hover .avatar-image {
+    transform: scale(1.04) rotate(1deg);
+  }
+
+  .skill-grid {
+    opacity: 0.14;
+  }
+
+  .dark .skill-grid {
+    background-image:
+      radial-gradient(circle at 12% 12%, rgba(236,72,153,0.22), transparent 20%),
+      radial-gradient(circle at 85% 18%, rgba(236,72,153,0.18), transparent 18%),
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 100% 140px, 140px 100%, 100% 120px, 120px 100%;
+  }
+
+  .light .skill-grid {
+    background-image:
+      radial-gradient(circle at 12% 12%, rgba(236,72,153,0.1), transparent 20%),
+      radial-gradient(circle at 85% 18%, rgba(236,72,153,0.08), transparent 18%),
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 100% 140px, 140px 100%, 100% 120px, 120px 100%;
+  }
+
+  .skill-badge {
+    @apply inline-flex items-center rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-[0.32em] transition-all duration-300;
+    color: var(--accent-pink);
+    background-color: var(--glass-bg);
+    border-color: var(--border-color);
+  }
+
+  .skill-badge:hover {
+    background-color: var(--card-hover);
+    border-color: var(--accent-pink);
+    color: white;
+  }
+
+  .skill-scroll-hint {
+    @apply inline-flex items-center justify-center rounded-full border px-4 py-2 text-xs backdrop-blur-sm transition-all duration-300;
+    background-color: var(--glass-bg);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  .skill-line {
+    @apply absolute left-0 right-0 top-8 h-px bg-gradient-to-r opacity-80;
+    background-image: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+    animation: slide-line 10s linear infinite;
+  }
+
+  @keyframes slide-line {
+    0% {
+      transform: translateX(-120%);
+    }
+    100% {
+      transform: translateX(120%);
+    }
+  }
+}
+
+/* Smooth scrolling animation */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-pink-light), var(--accent-pink));
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent-pink), var(--accent-pink-light));
+}
